@@ -12,7 +12,7 @@ class Api::ContactsController < ApplicationController
   end
 
   def create
-    @contact = Contact.new(first_name: params[input_first_name], last_name: params[input_last_name], email: params[input_email], phone_number: params[input_phone_number])
+    @contact = Contact.new(first_name: params[:input_first_name], last_name: params[:input_last_name], email: params[:input_email], phone_number: params[:input_phone_number])
     @contact.save
     render 'show.json.jbuilder'
   end
@@ -20,6 +20,19 @@ class Api::ContactsController < ApplicationController
   def update 
     input_id = params[:id]
     @contact = Contact.find_by(id: input_id)
+    @contact.first_name = params[:input_first_name]
+    @contact.last_name = params[:input_last_name]
+    @contact.email = params[:input_email]
+    @contact.phone_number = params[:input_phone_number]
+    @contact.save
+    render 'show.json.jbuilder'
+  end
+
+  def destroy 
+    input_id = params[:id]
+    @contact = Contact.find_by(id: input_id)
+    @contact.destroy
+    render 'destroy.json.jbuilder'
   end
 end
 #could have formatted phone_number in a better way

@@ -1,0 +1,1 @@
+json.message "you have deleted this contact successfully"
