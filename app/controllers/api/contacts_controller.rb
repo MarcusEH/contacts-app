@@ -20,6 +20,7 @@ class Api::ContactsController < ApplicationController
   def update 
     input_id = params[:id]
     @contact = Contact.find_by(id: input_id)
+    #@contact = Contact.find(params[id:]) works too as a shortcut
     @contact.first_name = params[:input_first_name]
     @contact.last_name = params[:input_last_name]
     @contact.email = params[:input_email]
