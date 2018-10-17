@@ -1,13 +1,25 @@
 class Api::ContactsController < ApplicationController
-  def first_contact_action
-    @contact = Contact.first
+  def show
+    input_id = params[:id]
+    @contact = Contact.find_by(id: input_id)
 
-    render 'first_contact_view.json.jbuilder'
+    render 'show.json.jbuilder'
   end
 
-  def all_contacts
+  def index
     @contacts = Contact.all
-    render 'all_contacts_view.json.jbuilder'
+    render 'index.json.jbuilder'
+  end
+
+  def create
+    @contact = Contact.new(first_name: params[input_first_name], last_name: params[input_last_name], email: params[input_email], phone_number: params[input_phone_number])
+    @contact.save
+    render 'show.json.jbuilder'
+  end
+
+  def update 
+    input_id = params[:id]
+    @contact = Contact.find_by(id: input_id)
   end
 end
 #could have formatted phone_number in a better way
