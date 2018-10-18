@@ -2,7 +2,6 @@ class Api::ContactsController < ApplicationController
   def show
     input_id = params[:id]
     @contact = Contact.find_by(id: input_id)
-
     render 'show.json.jbuilder'
   end
 

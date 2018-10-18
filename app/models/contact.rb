@@ -4,15 +4,13 @@ class Contact < ApplicationRecord
   end
 
   def full_name
-    full_name = "#{first_name} #{last_name}"
-    full_name
+    "#{first_name} #{last_name}"
   end
 
   def prefix_japan
     if phone_number[0..1] == "1-"
       phone_number[0..1] = ""
     end
-    full_number = "+81 #{phone_number}"
-    full_number
+    "+81 #{phone_number}"
   end
 end
