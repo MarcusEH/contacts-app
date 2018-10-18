@@ -10,7 +10,12 @@ contact4 = Contact.new(first_name: "asjbdw", last_name: "nkw", email: "jwadk@adn
 contact4.save
 
 100.times do
-  contactfaker = Contact.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "#{Faker::Name.first_name}#{Faker::Name.last_name}@gmail.com", phone_number: Faker::PhoneNumber.phone_number)
+  contactfaker = Contact.new(
+    first_name: Faker::Name.first_name, 
+    middle_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+     email: "#{Faker::Name.first_name}#{Faker::Name.last_name}@gmail.com",
+     phone_number: Faker::PhoneNumber.phone_number)
   contactfaker.save
 end
 

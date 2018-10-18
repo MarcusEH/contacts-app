@@ -14,3 +14,5 @@ json.array! @contacts do |contact|
   # end
   json.partial! 'contact.json.jbuilder', contact: contact
 end
+
+#you technically don't need the .json.jbuilder for a partial. Rails knows to look for that and assumes that's the extension.
