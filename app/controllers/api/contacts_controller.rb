@@ -3,7 +3,11 @@ class Api::ContactsController < ApplicationController
   def show
     input_id = params[:id]
     @contact = Contact.find_by(id: input_id)
-    render 'show.json.jbuilder'
+    if @contact.user_id == current_user.id
+      render 'show.json.jbuilder'
+    else
+      render json: {message: "you are not authorized to view this contact"}
+    end
   end
 
   def index
@@ -30,12 +34,13 @@ class Api::ContactsController < ApplicationController
     input_id = params[:id]
     @contact = Contact.find_by(id: input_id)
     #@contact = Contact.find(params[id:]) works too as a shortcut
-    @contact.first_name = params[:input_first_name]
-    @contact.last_name = params[:input_last_name]
-    @contact.middle_name = params[:input_middle_name]
-    @contact.email = params[:input_email]
-    @contact.phone_number = params[:input_phone_number]
-    @contact.bio = params[:input_bio]
+    @contact.first_name = params[:input_first_name] || @contact.first_name
+    @contact.last_name = params[:input_last_name]  || @contact.last_name
+    @contact.middle_name = params[:input_middle_name] || @contact.middle_name
+    @contact.email = params[:input_email] || @contact.email
+    @contact.phone_number = params[:input_phone_number] || @contact.phone_number
+    @contact.bio = params[:input_bio] || @contact.bio
+    @contact.user_id = current_user.id
     @contact.save
     render 'show.json.jbuilder'
   end
