@@ -1,4 +1,5 @@
 class Api::ContactsController < ApplicationController
+  before_action :authenticate_user
   def show
     input_id = params[:id]
     @contact = Contact.find_by(id: input_id)
@@ -6,7 +7,8 @@ class Api::ContactsController < ApplicationController
   end
 
   def index
-    @contacts = Contact.all
+
+    @contacts = Contact.where(user_id: current_user.id)
     render 'index.json.jbuilder'
   end
 
@@ -17,7 +19,9 @@ class Api::ContactsController < ApplicationController
       last_name: params[:input_last_name],
       email: params[:input_email],
       phone_number: params[:input_phone_number],
-      bio: params[:input_bio])
+      bio: params[:input_bio],
+      user_id: current_user.id
+    )
     @contact.save
     render 'show.json.jbuilder'
   end
