@@ -11,8 +11,13 @@ class Api::ContactsController < ApplicationController
   end
 
   def index
-
-    @contacts = Contact.where(user_id: current_user.id)
+    #@contacts = Contact.where(user_id: current_user.id)
+    if current_user
+      @contacts = current_user.contacts
+    else
+      @contacts = []
+    end
+    #line 16 is better than line 14
     render 'index.json.jbuilder'
   end
 
