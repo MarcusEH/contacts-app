@@ -43,3 +43,5 @@ require 'awesome_print'
 # response = Unirest.delete('localhost:3000/api/contacts/6')
 
 # ap response.body
+
+#had just created several instances of the group model and groupcontact model in rails console. Next step is making the associations in the models.
