@@ -10,3 +10,4 @@ json.updated_at contact.updated_at
 json.phone_number contact.prefix_japan
 json.bio contact.bio
 json.user_info contact.user
+json.groups contact.groups
