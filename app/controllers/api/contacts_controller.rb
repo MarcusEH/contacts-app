@@ -16,7 +16,7 @@ class Api::ContactsController < ApplicationController
       if params[:input_group]
         group_name = params[:input_group]
         group = Group.find_by(name: group_name)
-        @contacts = group.contacts.where(user_id: current_user)
+        @contacts = group.contacts.where(user_id: current_user.id)
       else
         @contacts = current_user.contacts
       end

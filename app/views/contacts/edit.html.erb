@@ -1,0 +1,11 @@
+<h2>Edit Contact Form</h2>
+<form action="/contacts/<%= @contact.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p>Enter the contact's first name:<input type="text" value="<% @contact.first_name %>" name="first_name"</p>
+  <p>Enter the contact's middle name:<input type="text" value="<% @contact.middle_name %>" name="middle_name"</p>
+  <p>Enter the contact's last name:<input type="text" value="<% @contact.last_name %>" name="last_name"</p>
+  <p>Enter the contact's email:<input type="text" value="<% @contact.email %>" name="email"</p>
+  <p>Enter the contact's phone number:<input type="text" value="<% @contact.phone_number %>" name="phone_number"</p>
+  <p>Enter the contact's bio:<input type="text" value="<% @contact.bio %>" name="bio"</p>
+  <p><input type="submit" value="submit changes"></p>
+</form>
